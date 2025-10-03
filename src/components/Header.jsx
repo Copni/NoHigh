@@ -9,6 +9,14 @@ export default function Header() {
                 <Link to="/arreter" className={styles.link}>Arrêter l'addiction</Link>
                 <Link to="/contact" className={styles.link}>Contact</Link>
             </nav>
+            <form className={styles.searchForm}>
+                <input
+                    type="text"
+                    placeholder="Rechercher..."
+                    className={styles.searchInput}
+                />
+                <button type="submit" className={styles.searchButton}>Recherche</button>
+            </form>
         </header>
     );
 }
