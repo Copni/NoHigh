@@ -1,15 +1,59 @@
 .header {
-    padding: 1rem;
-    background: #222;
-    color: #fff;
+  background-color: #1e293b;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Logo / marque */
+.logo .brand {
+  color: #3b82f6;
+  font-weight: 700;
+  font-size: 1.3rem;
+  text-decoration: none;
+}
+
+.logo .brand:hover {
+  color: #60a5fa;
+}
+
+/* Navigation principale */
 .nav {
-    display: flex;
-    gap: 1rem;
+  display: flex;
+  gap: 1.5rem;
 }
 
 .link {
-    color: white;
-    text-decoration: none;
+  color: white;
+  font-weight: 500;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.link:hover {
+  color: #3b82f6;
+}
+
+/* Bouton de connexion */
+.authButton {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.authButton:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.authButton:active {
+  transform: translateY(0);
 }

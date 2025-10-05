@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import styles from "./DrugSearch.module.css"; 
 
 const API_URL = "https://drugs-api-gbik.onrender.com";
 const API_KEY = "ILoveDrugs";
@@ -10,7 +11,6 @@ export default function DrugSearch() {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
 
-    // --- Recherche automatique quand query ou type change ---
     useEffect(() => {
         if (query.trim() || type.trim()) {
             fetchDrugs();
@@ -49,26 +49,22 @@ export default function DrugSearch() {
     };
 
     return (
-        <div className="max-w-3xl mx-auto p-6">
-            <h1 className="text-2xl font-bold mb-4 text-center">
-                🔎 Recherche de substances (InfoDrogues API)
-            </h1>
+        <div className={styles.container}>
+            <h1 className={styles.title}>🔎 Recherche de substances</h1>
 
-            <form
-                onSubmit={handleSearch}
-                className="flex flex-col sm:flex-row gap-3 mb-6"
-            >
+            {/* --- Formulaire de recherche --- */}
+            <form onSubmit={handleSearch} className={styles.form}>
                 <input
                     type="text"
                     placeholder="Rechercher une drogue..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
-                    className="flex-1 p-2 border rounded-lg shadow-sm"
+                    className={styles.input}
                 />
                 <select
                     value={type}
                     onChange={(e) => setType(e.target.value)}
-                    className="p-2 border rounded-lg shadow-sm"
+                    className={styles.select}
                 >
                     <option value="">Tous les types</option>
                     <option value="stimulant">Stimulant</option>
@@ -77,37 +73,28 @@ export default function DrugSearch() {
                     <option value="psychotrope">Psychotrope</option>
                     <option value="sédatif">Sédatif</option>
                 </select>
-                <button
-                    type="submit"
-                    className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"
-                >
+                <button type="submit" className={styles.button}>
                     Rechercher
                 </button>
             </form>
 
-            {loading && <p className="text-gray-600 text-center">Chargement...</p>}
-            {error && <p className="text-red-600 text-center">{error}</p>}
+            {/* --- États : chargement, erreur, résultats --- */}
+            {loading && <p className={styles.message}>Chargement...</p>}
+            {error && <p className={`${styles.message} ${styles.error}`}>{error}</p>}
 
-            <div className="grid sm:grid-cols-2 gap-4">
+            <div className={styles.results}>
                 {results.map((drug) => (
-                    <div
-                        key={drug.id}
-                        className="border rounded-xl p-4 shadow-md bg-white hover:shadow-lg transition"
-                    >
-                        <img
-                            src={drug.poster}
-                            alt={drug.nom}
-                            className="w-full h-40 object-cover rounded-lg mb-3"
-                        />
-                        <h2 className="text-lg font-semibold">{drug.nom}</h2>
-                        <p className="text-sm text-gray-500">{drug.type}</p>
-                        <p className="text-sm mt-2">
-                            <strong>Effet:</strong> {drug.effet}
+                    <div key={drug.id} className={styles.card}>
+                        <img src={drug.poster} alt={drug.nom} className={styles.image} />
+                        <h2 className={styles.name}>{drug.nom}</h2>
+                        <p className={styles.type}>{drug.type}</p>
+                        <p className={styles.detail}>
+                            <strong>Effet :</strong> {drug.effet}
                         </p>
-                        <p className="text-sm">
-                            <strong>Risque:</strong> {drug.risque}
+                        <p className={styles.detail}>
+                            <strong>Risque :</strong> {drug.risque}
                         </p>
-                        <p className="text-sm text-gray-600 mt-1">
+                        <p className={styles.detail}>
                             💰 <strong>{drug.prix}</strong>
                         </p>
                     </div>
@@ -115,9 +102,7 @@ export default function DrugSearch() {
             </div>
 
             {!loading && !error && results.length === 0 && (
-                <p className="text-center text-gray-500 mt-4">
-                    Aucune substance trouvée.
-                </p>
+                <p className={styles.message}>Aucune substance trouvée.</p>
             )}
         </div>
     );
