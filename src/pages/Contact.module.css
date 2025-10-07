@@ -1,10 +1,12 @@
 .container {
-  max-width: 900px;
-  margin: 0 auto;
-  background-color: white;
+  max-width: 780px;
+  margin: 2.5rem auto;
+  background-color: #ffffff;
   padding: 2rem;
   border-radius: 12px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 6px 24px rgba(16, 24, 40, 0.08);
+  font-family: inherit;
+  color: #0f172a;
 }
 
 .title {

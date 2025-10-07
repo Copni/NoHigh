@@ -3,10 +3,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
 }
 
 body {
-  font-family: 'Inter', sans-serif;
   background-color: #f8fafc; /* gris très clair */
   color: #1e293b; /* gris foncé / bleu nuit */
   line-height: 1.6;
